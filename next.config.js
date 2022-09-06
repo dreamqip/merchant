@@ -12,6 +12,10 @@ const nextConfig = {
     },
     eslint: {
         dirs: ['src/pages', 'src/components', 'src/context']
+    },
+    experimental: {
+        legacyBrowsers: false,
+        browsersListForSwc: true
     }
 }
 
