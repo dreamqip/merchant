@@ -27,7 +27,7 @@ export default async function handler(
                 ],
                 line_items: req.body.map((item: any) => {
                     const img = item.image[0].asset._ref;
-                    const newImg = img.replace('image-', 'https://cdn.sanity.io/images/ypzzjwff/production/').replace('-webp', '.webp');
+                    const newImg = img.replace('image-', `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/`).replace('-webp', '.webp');
 
                     return {
                         price_data: {
@@ -46,7 +46,7 @@ export default async function handler(
                     }
                 }),
                 success_url: `${req.headers.origin}/success`,
-                cancel_url: `${req.headers.origin}/?canceled=true`,
+                cancel_url: `${req.headers.origin}/canceled`,
             });
             res.status(200).json(session);
         } catch (err) {
