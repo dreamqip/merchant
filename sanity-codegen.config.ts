@@ -1,4 +1,4 @@
-import { SanityCodegenConfig } from 'studio-codegen';
+import { SanityCodegenConfig } from 'sanity-codegen';
 
 const config: SanityCodegenConfig = {
     schemaPath: './studio/schemas/schema.js',

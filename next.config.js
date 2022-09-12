@@ -7,7 +7,7 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-        domains: ['cdn.studio.io'],
+        domains: ['cdn.sanity.io'],
         loader: 'custom'
     },
     eslint: {
