@@ -1,7 +1,7 @@
-import {InferGetServerSidePropsType, NextPage} from "next";
-import {FooterBanner, HeroBanner, Product} from "../components";
-import {client} from "../lib/client";
+import type {InferGetServerSidePropsType, NextPage} from "next";
 import type * as Schema from '../../schema';
+import {FooterBanner, HeroBanner, Product} from "../components";
+import {client} from "../lib/sanity.server";
 
 const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({products, banner}) => {
     return (

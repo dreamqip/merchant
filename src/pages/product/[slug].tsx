@@ -1,6 +1,5 @@
 import type {GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage} from "next";
 import type * as Schema from "../../../schema";
-import {client} from "../../lib/client";
 import {AiFillStar} from "@react-icons/all-files/ai/AiFillStar";
 import {AiOutlineStar} from "@react-icons/all-files/ai/AiOutlineStar";
 import {AiOutlineMinus} from "@react-icons/all-files/ai/AiOutlineMinus";
@@ -8,6 +7,8 @@ import {AiOutlinePlus} from "@react-icons/all-files/ai/AiOutlinePlus";
 import {useStateContext} from "../../context/StateContext";
 import MayLike from "../../components/MayLike";
 import ProductImages from "../../components/ProductImages";
+import {getClient} from "../../lib/sanity.server";
+import {client} from "../../lib/sanity.server";
 
 interface Props {
     products: Schema.Product[];
@@ -85,18 +86,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: 'blocking'
+        fallback: true
     }
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({params, preview= false}) => {
     const slug = params?.slug as string;
 
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
     const productsQuery = `*[_type == "product"]`;
 
-    const product = await client.fetch<Schema.Product>(query);
-    const products = await client.fetch<Schema.Product[]>(productsQuery);
+    const product = await getClient(preview).fetch<Schema.Product>(query);
+    const products = await getClient(preview).fetch<Schema.Product[]>(productsQuery);
 
     return {
         props: {

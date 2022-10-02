@@ -2,9 +2,10 @@ import type {FC} from 'react';
 import type {Product as ProductType} from "../../schema";
 import type {SanityImageSource} from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
-import {client, urlFor} from "../lib/client";
+import {urlFor} from "../lib/client";
 import {useNextSanityImage, UseNextSanityImageProps} from "next-sanity-image";
 import {memo, useState} from "react";
+import {client} from "../lib/sanity.server";
 
 interface Props {
     product: ProductType;

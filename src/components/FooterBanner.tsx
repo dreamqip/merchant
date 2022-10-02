@@ -2,7 +2,7 @@ import type {FC} from 'react';
 import type {Banner} from "../../schema";
 import type {SanityImageSource} from "@sanity/image-url/lib/types/types";
 import Link from "next/link";
-import {client} from "../lib/client";
+import {client} from "../lib/sanity.server";
 import Image from "next/image";
 import {useNextSanityImage, UseNextSanityImageProps} from "next-sanity-image";
 
